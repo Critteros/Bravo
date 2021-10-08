@@ -18,9 +18,14 @@ set(project-deps-list)
 
 # seleepy-discord
 
-set(OPENSSL_ROOT_DIR "C:\\Program Files\\Git\\usr\\bin")
 add_subdirectory("${deps-source-dir}/sleepy-discord")
+include_directories("${deps-source-dir}/sleepy-discord/include")
+#target_include_directories(${PROJECT_NAME} PUBLIC "${deps-source-dir}/sleepy-discord/include")
+
+
+target_link_libraries(${PROJECT_NAME} sleepy-discord)
 #########################################
 
-#VS fix
-set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+
+
+
