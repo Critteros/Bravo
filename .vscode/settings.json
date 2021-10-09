@@ -1,9 +1,9 @@
 {
     "cmake.additionalKits": [
-        "C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "${env:VCPKG_TOOLCHAIN}"
     ],
     "cmake.configureArgs": [
-        "-DCMAKE_TOOLCHAIN_FILE=C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "-DCMAKE_TOOLCHAIN_FILE=${env:VCPKG_TOOLCHAIN}"
     ],
     "files.associations": {
         ".pylintrc": "ini",
@@ -105,5 +105,6 @@
     "spellright.documentTypes": [
         "markdown",
         "latex"
-    ]
+    ],
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

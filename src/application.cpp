@@ -15,7 +15,7 @@ namespace BravoBot
         if (enviroment.find("DISCORD_TOKEN") == enviroment.end())
         {
             spdlog::critical("No DISCORD_TOKEN env var exists!");
-            throw std::runtime_error{"No DISCORD_TOKEN was provided!"};
+            exit(-1);
         }
 
         const std::string &token = enviroment["DISCORD_TOKEN"];
