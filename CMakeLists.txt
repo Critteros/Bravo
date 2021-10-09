@@ -18,6 +18,13 @@ set(project-deps-list)
 find_package(sleepy-discord CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE sleepy-discord)
 
+# fmt
+find_package(fmt CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+
+#spdlog
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog spdlog::spdlog_header_only)
 
 #########################################
 

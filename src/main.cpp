@@ -1,4 +1,9 @@
+#include "utils.hpp"
+
 #include <sleepy_discord/sleepy_discord.h>
+
+#include <fmt/core.h>
+#include <spdlog/spdlog.h>
 
 #define SLEEPY_USE_HARD_CODED_GATEWAY
 
@@ -13,8 +18,14 @@ public:
     }
 };
 
-int main()
+int main(int argc, char *argv[], char **envp)
 {
-    MyClientClass client("test", SleepyDiscord::USER_CONTROLED_THREADS);
+    EnvList env_vars = load_env(envp);
+    for (const auto &[key, value] : env_vars)
+    {
+        spdlog::debug("key: {}  value: {}\n", key, value);
+    }
+
+    MyClientClass client(env_vars["DISCORD_TOKEN"], SleepyDiscord::USER_CONTROLED_THREADS);
     client.run();
 }

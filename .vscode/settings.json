@@ -4,5 +4,19 @@
     ],
     "cmake.configureArgs": [
         "-DCMAKE_TOOLCHAIN_FILE=C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    ],
+    "files.associations": {
+        ".pylintrc": "ini",
+        "iosfwd": "cpp",
+        "chrono": "cpp",
+        "xstring": "cpp"
+    },
+    "spellright.language": [
+        "en",
+        "pl"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex"
     ]
 }
