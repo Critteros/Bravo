@@ -27,5 +27,6 @@ int main(int argc, char *argv[], char **envp)
     }
 
     MyClientClass client(env_vars["DISCORD_TOKEN"], SleepyDiscord::USER_CONTROLED_THREADS);
+    client.setIntents(SleepyDiscord::Intent::SERVER_MESSAGES);
     client.run();
 }
