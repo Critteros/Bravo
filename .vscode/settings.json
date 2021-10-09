@@ -1,0 +1,8 @@
+{
+    "cmake.additionalKits": [
+        "C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    ],
+    "cmake.configureArgs": [
+        "-DCMAKE_TOOLCHAIN_FILE=C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    ]
+}
