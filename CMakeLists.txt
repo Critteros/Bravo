@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.18)
 
 
 # Platform detection settings for vcpkg
@@ -7,7 +7,9 @@ if(WIN32)
 endif()
 
 if(UNIX AND NOT APPLE)
-    set(VCPKG_TARGET_TRIPLET "x64-linux-static" CACHE STRING "")
+    set(VCPKG_TARGET_TRIPLET "x64-linux" CACHE STRING "")
+    set(CMAKE_BUILD_TYPE Release)
+    set(CMAKE_CXX_FLAGS "-O3")
 endif()
 
 
@@ -15,7 +17,7 @@ endif()
 project("Bravo" LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_GENERATOR_PLATFORM x64)
+
 
 
 # Finding all source files for this project
