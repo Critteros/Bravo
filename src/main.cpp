@@ -1,9 +1,10 @@
 #include "application.hpp"
+#include "pch.hpp"
 
-#include <sleepy_discord/sleepy_discord.h>
-
-#include <fmt/core.h>
-#include <spdlog/spdlog.h>
+int func()
+{
+    return 0;
+}
 
 int main(int argc, char *argv[], char **envp)
 {

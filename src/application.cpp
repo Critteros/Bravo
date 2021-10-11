@@ -1,10 +1,5 @@
 #include "application.hpp"
 
-#include <spdlog/spdlog.h>
-#include <sleepy_discord/sleepy_discord.h>
-
-#include <stdexcept>
-
 namespace BravoBot
 {
     Application::Application(int argc, char *argv[], char **envp)

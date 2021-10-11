@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
 
-
 # Platform detection settings for vcpkg
 if(WIN32)
     set(VCPKG_TARGET_TRIPLET "x64-windows-static" CACHE STRING "")
@@ -12,17 +11,22 @@ if(UNIX AND NOT APPLE)
     set(CMAKE_CXX_FLAGS "-O3")
 endif()
 
-
 # Project initial-setup
 project("Bravo" LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_library(project_warnings INTERFACE)
+include("cmake/add_compiler_options.cmake")
+set_project_warnings(project_warnings)
+
 
 
 # Finding all source files for this project
-file(GLOB sources "src/*.cpp" "src/*.h")
+file(GLOB sources "src/*.cpp" "src/*.h" "src/*.hpp")
 add_executable(${PROJECT_NAME} ${sources})
+target_link_libraries(${PROJECT_NAME} PRIVATE project_warnings)
+target_precompile_headers(${PROJECT_NAME} PRIVATE "src/pch.hpp")
 
 #########################################
 
@@ -52,3 +56,4 @@ if(WIN32)
         VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
     set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 endif()
+

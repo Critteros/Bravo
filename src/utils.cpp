@@ -1,16 +1,5 @@
 #include "utils.hpp"
 
-#include <spdlog/spdlog.h>
-
-#include <filesystem>
-#include <string>
-#include <fstream>
-#include <iterator>
-#include <vector>
-#include <regex>
-#include <algorithm>
-#include <cstdlib>
-
 EnvList load_env(char **envp)
 {
     EnvList dict{};

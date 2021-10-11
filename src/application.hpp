@@ -2,10 +2,7 @@
 
 #include "utils.hpp"
 #include "botclient.hpp"
-
-#include <vector>
-#include <string>
-#include <memory>
+#include "pch.hpp"
 
 namespace BravoBot
 {
