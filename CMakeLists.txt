@@ -1,15 +1,44 @@
 cmake_minimum_required(VERSION 3.18)
 
+
+
+find_package(Git REQUIRED)
+if(NOT GIT_FOUND)
+    message(FATAL_ERROR "git not found!")
+endif()
+
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/vcpkg)
+    message(STATUS "Downloading vcpkg to ${CMAKE_BINARY_DIR}/vcpkg")
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} clone https://github.com/microsoft/vcpkg.git vcpkg
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        RESULT_VARIABLE     git_result
+        OUTPUT_VARIABLE     git_output
+    )
+endif()
+
+message(STATUS "Initializing vcpkg")
+
 # Platform detection settings for vcpkg
 if(WIN32)
     set(VCPKG_TARGET_TRIPLET "x64-windows-static" CACHE STRING "")
+    execute_process(
+        COMMAND bootstrap-vcpkg.bat -disableMetrics
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/vcpkg
+    )
 endif()
 
 if(UNIX AND NOT APPLE)
     set(VCPKG_TARGET_TRIPLET "x64-linux" CACHE STRING "")
     set(CMAKE_BUILD_TYPE Release)
     set(CMAKE_CXX_FLAGS "-O3")
+    execute_process(
+        COMMAND ./bootstrap-vcpkg.sh -disableMetrics
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/vcpkg
+    )
 endif()
+
+include(${CMAKE_BINARY_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 # Project initial-setup
 project("Bravo" LANGUAGES CXX)
